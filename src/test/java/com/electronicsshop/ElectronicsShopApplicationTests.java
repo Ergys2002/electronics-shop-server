@@ -1,4 +1,4 @@
-package com.sdaelectronicsshop.electronicsshop;
+package com.electronicsshop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
