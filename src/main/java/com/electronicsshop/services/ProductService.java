@@ -1,5 +1,6 @@
 package com.electronicsshop.services;
 
+import com.electronicsshop.dto.CategoryResponse;
 import com.electronicsshop.dto.ProductRequest;
 import com.electronicsshop.dto.ProductResponse;
 import com.electronicsshop.entities.Category;
@@ -7,6 +8,8 @@ import com.electronicsshop.entities.Product;
 import com.electronicsshop.repositories.ICategoryRepository;
 import com.electronicsshop.repositories.IProductRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +25,7 @@ public class ProductService implements IProductService {
     protected final ICategoryRepository categoryRepository;
 
     @Override
-    public List<ProductResponse> getAllProducts() {
+    public List<ProductResponse> getAll() {
         return productRepository.getAll();
     }
 
@@ -43,4 +46,15 @@ public class ProductService implements IProductService {
                 .build();
         productRepository.save(dbItem);
     }
+
+    @Override
+    public List<ProductResponse> getTopFiveProductsInSale() {
+        return productRepository.findTop5BySaleIsTrue();
+    }
+
+    @Override
+    public List<ProductResponse> getTopThreeNewestProducts() {
+        return productRepository.findTop3ByCreatedAtOrderByCreatedAtDesc();
+    }
+
 }

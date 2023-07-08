@@ -1,6 +1,7 @@
 package com.electronicsshop.dto;
 
 import lombok.*;
+import org.springframework.beans.factory.annotation.Value;
 
 
 public interface ProductResponse {
@@ -15,4 +16,17 @@ public interface ProductResponse {
     double getSalePrice();
 
     String getBanner();
+
+    String getPhoto();
+
+    int getStock();
+
+    int getTotalSales();
+
+    int getRating();
+
+    String getCategoryId();
+
+    @Value("#{target.category.title}")
+    String getCategoryName();
 }
